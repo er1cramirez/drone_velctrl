@@ -198,3 +198,25 @@ void ModeQuaternionTest::run()
     attitude_control->set_throttle_out(HOVER_THROTTLE, true, g.throttle_filt);
 }
 ```
+## Comandos para compilar y ejecutar:
+### Compilar ardupilot:
+```
+cd ardupilot
+./waf configure --board sitl
+./waf copter
+```
+For clean
+```
+./waf clean
+./waf disclean
+```
+### Compilar gazebo:
+```
+colcon build --packages-up-to ardupilot_sitl
+source install/setup.bash
+ros2 launch ardupilot_gz_bringup iris_runway.launch.py
+```
+### Mavlink
+```
+mavproxy.py --console --map --aircraft test --master=:14550
+```
